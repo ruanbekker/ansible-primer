@@ -1,6 +1,65 @@
 # ansible-primer
 Ansible Primer Repo
 
+## About
+
+This is my ansible primer repository that I've put together to reference when I need it.
+
+## What does it do
+
+This example includes a ansible role called "promtail-for-linux" wich installs the [grafana promtail](https://grafana.com/docs/loki/latest/clients/promtail/) agent on 3 nodes, which is grouped into 3 groups:
+
+- `[prod]    prod.example.com`
+- `[staging] staging.example.com`
+- `[dev]     dev.example.com`
+
+It requires a [Grafana Loki](https://grafana.com/oss/loki/) server, but it's beyond the scope of this example.
+
+## Project Structure
+
+The directory structure generated with `tree`:
+
+```bash
+.
+├── EXTRAS.md
+├── README.md
+├── ansible.cfg
+├── group_vars
+│   ├── dev
+│   │   └── vars
+│   ├── prod
+│   │   └── vars
+│   └── staging
+│       └── vars
+├── host_vars
+│   ├── dev.example.com
+│   │   └── vars
+│   ├── prod.example.com
+│   │   └── vars
+│   └── staging.example.com
+│       └── vars
+├── hosts
+├── playbooks
+│   └── promtail.yml
+└── roles
+    └── promtail-for-linux
+        ├── defaults
+        │   └── main.yml
+        ├── files
+        │   └── promtail.service
+        ├── handlers
+        │   └── main.yml
+        ├── tasks
+        │   ├── main.yml
+        │   └── task-ubuntu.yml
+        ├── templates
+        │   └── linux-promtail-config.yml.j2
+        └── vars
+            └── main.yml
+
+17 directories, 18 files
+```
+
 ## Usefil Tips
 
 Variable Precendence (only the ones I'm interested in - see the docs at the bottom for a detailed overview):
