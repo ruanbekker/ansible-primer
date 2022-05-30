@@ -1,0 +1,21 @@
+---
+- name: deploys-promtail-for-prod-instances
+  hosts: dev
+  become: yes
+  become_user: root
+  roles:
+    - { role: ../roles/promtail-for-linux }
+
+- name: deploys-promtail-for-dev-instances
+  hosts: staging
+  become: yes
+  become_user: root
+  roles:
+    - { role: ../roles/promtail-for-linux }
+
+- name: deploys-promtail-for-prod-instances
+  hosts: prod
+  become: yes
+  become_user: root
+  roles:
+    - { role: ../roles/promtail-for-linux }

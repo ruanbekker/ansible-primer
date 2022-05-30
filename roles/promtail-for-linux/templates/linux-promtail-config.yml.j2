@@ -1,0 +1,44 @@
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+positions:
+  filename: /var/lib/promtail/positions.yaml
+
+{% if loki_scheme == 'https' %}
+clients:
+  - url: {{ loki_scheme }}://{{ loki_username }}:{{ loki_password }}@{{ loki_hostname }}:{{ loki_port }}/loki/api/v1/push
+{% else %}
+clients:
+  - url: {{ loki_scheme }}://{{ loki_hostname }}:{{ loki_port }}/loki/api/v1/push
+{% endif %}
+
+scrape_configs:
+  - job_name: journal
+    journal:
+      json: false
+      max_age: 12h
+      path: /var/log/journal
+      labels:
+        job: systemd-logs
+        tenant: {{ tenant_name }}
+        name: {{ tenant_name }}
+        env: {{ environment_name }}
+    relabel_configs:
+      - source_labels: ["__journal__systemd_unit"]
+        target_label: "unit"
+
+  - job_name: server-logs
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: server-logs
+          tenant: {{ tenant_name }}
+          name: {{ tenant_name }}
+          env: {{ environment_name }}
+    relabel_configs:
+      - action: replace
+        replacement: /var/log/**.log
+        target_label: __path__
+

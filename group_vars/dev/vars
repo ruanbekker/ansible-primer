@@ -1,0 +1,4 @@
+loki_scheme: "http"
+loki_hostname: "localhost"
+loki_port: "3000"
+environment_name: "dev"

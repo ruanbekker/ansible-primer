@@ -1,0 +1,4 @@
+loki_scheme: "https"
+loki_hostname: "loki-api.example.com"
+loki_port: "443"
+environment_name: "prod"

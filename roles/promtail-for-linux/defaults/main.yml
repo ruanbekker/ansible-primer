@@ -1,0 +1,9 @@
+---
+promtail_version: "2.5.0"
+loki_scheme: "http"
+loki_hostname: "localhost"
+loki_port: "3000"
+loki_username: "default"
+loki_password: "default"
+tenant_name: "default"
+environment_name: "test"
