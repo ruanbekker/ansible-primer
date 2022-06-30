@@ -69,4 +69,7 @@
     daemon_reload: yes
     enabled: yes
     name: promtail
+  notify:
+    - test-notifier
+  register: systemd_enabled
 
