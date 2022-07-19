@@ -12,3 +12,14 @@
         job: "{{ environment_name }}/{{ service_name }}-logs"
       {% endif %}
 ``` 
+
+## using and operator
+
+```
+{% if app_name == 'demo' and app_env == 'dev' %}
+  - job_name: demo-app-logs
+    static_configs:
+    - targets:
+        - localhost
+{% endif %}
+```
