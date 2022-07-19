@@ -35,6 +35,28 @@ And the host var:
 skip_installation: "true"
 ```
 
+### Run tasks on different OSs
+
+Run specific tasks depending on the OS Family:
+
+```yaml
+- name: remove datadog-agent on debian
+  apt:
+    state: absent
+    name: datadog-agent
+  when: ansible_os_family == "Debian"
+  tags:
+    - remove
+
+- name: remove datadog-agent on amazon linux
+  yum:
+    state: absent
+    name: datadog-agent
+  when: ansible_os_family == "RedHat"
+  tags:
+    - remove
+```
+
 ## Jinja2 
 
 ### if then else
