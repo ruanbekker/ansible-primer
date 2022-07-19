@@ -25,7 +25,7 @@ Then the default vars:
 
 ```yaml
 # roles/prometheus-node-exporter/defaults/main.yml
-skip_installation == "false"
+skip_installation: "false"
 ```
 
 And the host var:
